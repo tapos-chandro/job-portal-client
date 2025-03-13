@@ -1,8 +1,14 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink} from "react-router";
 import logo from "../assets/big-logo.png";
 import { IoMdMenu } from "react-icons/io";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const NavBar = () => {
+
+  const {user, logOut} = useContext(AuthContext)
+
+
   const navList = (
     <>
       <li className="mx-2">
@@ -17,6 +23,13 @@ const NavBar = () => {
     </>
   );
 
+  const handleLogOut = () => {
+    logOut()
+  }
+
+  // if(loading){
+  //   return <p>Loading...</p>
+  // }
   return (
     <div className="bg-base-100 ">
       <div className="navbar container mx-auto">
@@ -46,7 +59,8 @@ const NavBar = () => {
             </ul>
           </div>
           <div className="hidden md:block lg:block  ">
-            <Link to={"/login"}>
+            {
+              user?.email ? <button onClick={handleLogOut} className="btn">Log Out</button> : <><Link to={"/login"}>
               <button className=" mx-2 btn font-bold p-4 hover:cursor-pointer">
                 Log in
               </button>
@@ -55,7 +69,8 @@ const NavBar = () => {
               <button className="btn mx-2 font-bold p-4 hover:cursor-pointer">
                 Register
               </button>
-            </Link>
+            </Link></>
+            }
           </div>
         </div>
       </div>
