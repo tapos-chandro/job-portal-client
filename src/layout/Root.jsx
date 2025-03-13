@@ -6,7 +6,9 @@ import NavBar from "../sheared/NavBar";
 const Root = () => {
   return (
     <div>
+      <div className="py-14">
       <NavBar></NavBar>
+      </div>
       <div className="container mx-auto px-5">
         <Outlet></Outlet>
       </div>
