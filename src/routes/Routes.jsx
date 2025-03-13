@@ -3,6 +3,7 @@ import Root from "../layout/Root"
 import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import AllJobs from "../pages/AllJobs/AllJobs";
 
 const Routers = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ const Routers = createBrowserRouter([
         {
             path: '/login',
             element:<Login></Login>
+        }
+        ,
+        {
+            path: '/all-jobs',
+            element:<AllJobs></AllJobs>
         }
       ]
     },
