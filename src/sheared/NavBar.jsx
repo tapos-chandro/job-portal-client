@@ -40,6 +40,21 @@ const NavBar = () => {
           >
             Jobs
           </NavLink>
+          {
+            user && <>
+                      <NavLink
+            to="/my-applications"
+            className={({ isActive }) =>
+              isActive
+                ? "text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1"
+                : "text-white hover:text-yellow-300 transition duration-300"
+            }
+          >
+            My Applications
+          </NavLink>
+            
+            </>
+          }
           <NavLink
             to="/blog"
             className={({ isActive }) =>
@@ -134,6 +149,18 @@ const NavBar = () => {
             >
               Blog
             </NavLink>
+            {
+              user && <>
+                          <NavLink
+              to="/blog"
+              className="text-white block text-lg hover:text-yellow-300 transition duration-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              My Applications
+            </NavLink>
+              
+              </>
+            }
             <NavLink
               to="/contact"
               className="text-white block text-lg hover:text-yellow-300 transition duration-300"
@@ -151,6 +178,8 @@ const NavBar = () => {
               >
                 Log Out
               </button>
+              
+
             ) : (
               <>
               <NavLink to="/login" className={({ isActive }) =>

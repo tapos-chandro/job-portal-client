@@ -5,6 +5,9 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import AllJobs from "../pages/AllJobs/AllJobs";
 import Details from "../pages/Home/Details";
+import ApplyForm from "../pages/Home/ApplyForm";
+import MyApplications from "../pages/MyApplications/MyApplications";
+import PrivetRoute from "./PrivetRoute";
 
 const Routers = createBrowserRouter([
     {
@@ -29,7 +32,17 @@ const Routers = createBrowserRouter([
         },
         {
             path: 'details/:id',
-            element:<Details></Details>
+            element:<PrivetRoute><Details></Details></PrivetRoute>
+        }
+        ,
+        {
+            path: 'apply/:id',
+            element:<PrivetRoute><ApplyForm></ApplyForm></PrivetRoute>
+        }
+        ,
+        {
+            path: 'my-applications',
+            element:<PrivetRoute><MyApplications></MyApplications></PrivetRoute>
         }
       ]
     },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { IoIosMail, IoMdMail } from "react-icons/io";
 import { LuMapPin } from "react-icons/lu";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 const Details = () => {
   const [jobDetail, setJobDetail] = useState({});
@@ -73,12 +74,14 @@ const Details = () => {
             Apply by:{jobDetail?.applicationDeadline}
           </div>
           <div className="flex justify-between items-center mt-5">
-            <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 transition-all py-2 rounded-xl font-medium">
+            <Link to={`/apply/${jobDetail?._id}`} className="w-full">
+            <button className="w-full hover:cursor-pointer bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 transition-all py-2 rounded-xl font-medium">
               Apply Now
             </button>
+            </Link>
           </div>
           <div className="flex items-center gap-2 text-gray-600 mt-3 text-sm">
-            {/* <Mail size={16} className="text-indigo-500" />{" "} */}
+            <IoIosMail className="text-indigo-500 text-2xl"/>
             {jobDetail?.hr_email}
           </div>
         </div>
