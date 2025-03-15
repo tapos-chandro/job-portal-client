@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import AllJobs from "../pages/AllJobs/AllJobs";
+import Details from "../pages/Home/Details";
 
 const Routers = createBrowserRouter([
     {
@@ -13,21 +14,22 @@ const Routers = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>
-        }
-        ,
+        },
         {
-            path: '/register',
+            path: 'register',
             element: <Register></Register>
-        }
-        ,
+        },
         {
-            path: '/login',
+            path: 'login',
             element:<Login></Login>
-        }
-        ,
+        },
         {
-            path: '/jobs',
+            path: 'jobs',
             element:<AllJobs></AllJobs>
+        },
+        {
+            path: 'details/:id',
+            element:<Details></Details>
         }
       ]
     },

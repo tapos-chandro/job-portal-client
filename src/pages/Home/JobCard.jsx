@@ -1,8 +1,10 @@
 import { IoLocation } from "react-icons/io5";
 import { TiShoppingBag } from "react-icons/ti";
+import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -12,6 +14,7 @@ const JobCard = ({ job }) => {
     salaryRange,
     company_logo,
   } = job;
+
 
   return (
     <div className="bg-[#F3F4F6] shadow-lg rounded-xl overflow-hidden border border-gray-300 transition-transform hover:scale-105 hover:shadow-2xl">
@@ -56,9 +59,11 @@ const JobCard = ({ job }) => {
           <h2 className="text-lg font-semibold text-[#1E40AF]">
             ${salaryRange?.min} - {salaryRange?.max} {salaryRange?.currency}
           </h2>
+          <Link to={`/details/${_id}`}>
           <button className="bg-[#06B6D4] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#9333EA] transition-all">
             View Details
           </button>
+          </Link>
         </div>
       </div>
     </div>
