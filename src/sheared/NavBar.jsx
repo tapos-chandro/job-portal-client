@@ -152,7 +152,7 @@ const NavBar = () => {
             {
               user && <>
                           <NavLink
-              to="/blog"
+              to="/my-applications"
               className="text-white block text-lg hover:text-yellow-300 transition duration-300"
               onClick={() => setMenuOpen(false)}
             >

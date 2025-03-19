@@ -2,6 +2,8 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
+import usePrivetAxios from "../../hooks/usePrivetAxios";
+import AuthProvider from "../../context/AuthProvider";
 
 
 const ApplyForm = () => {
@@ -9,9 +11,11 @@ const ApplyForm = () => {
     const {user} = useContext(AuthContext)
     const {id} = useParams()
     const navigate = useNavigate()
+    const axiosInstance = usePrivetAxios()
 
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
@@ -23,25 +27,56 @@ const ApplyForm = () => {
 
     const formObjectData = {...formObject, id: id}
 
-    fetch('http://localhost:5000/api/v1/job-applications', {
-        method: "POST",
-        headers: {
-            'Content-type': "application/json"
-        },
-        body: JSON.stringify(formObjectData)
+    // fetch('http://localhost:5000/api/v1/job-applications', {
+    //     method: "POST",
+    //     headers: {
+    //         'Content-type': "application/json"
+    //     },
+    //     body: JSON.stringify(formObjectData)
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    //     if(data.acknowledged=== true){
+    //         Swal.fire({
+    //             title: "Apply successfully",
+    //             icon: "success",
+    //             draggable: true
+    //           });
+    //           navigate('/my-applications')
+    //     }
+    // })
+
+    const checkResponse = await axiosInstance.get(`/api/v1/my-apply/?email=${user?.email}&jobId=${id}`);
+    console.log()
+    if (checkResponse.data.length > 0) {
+      Swal.fire({
+        title: "You have already applied!",
+        icon: "warning",
+      });
+      // setLoading(false);
+      return;
+    }else{
+    axiosInstance.post('/api/v1/job-applications', formObjectData )
+    .then(res => {
+          if(res.data.acknowledged=== true){
+              Swal.fire({
+                  title: "Apply successfully",
+                  icon: "success",
+                  draggable: true
+                });
+                navigate('/my-applications')
+          }
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        if(data.acknowledged=== true){
-            Swal.fire({
-                title: "Apply successfully",
-                icon: "success",
-                draggable: true
-              });
-              navigate('/my-applications')
-        }
+    .catch(error => {
+      console.log(error)
     })
+    }
+
+
+
+
+    
   };
 
   return (
