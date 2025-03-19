@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://job-portal-server-delta-two.vercel.app',
     withCredentials: true
 })
 
@@ -18,9 +18,9 @@ const usePrivetAxios = () => {
     useEffect(() => {
         axiosInstance.interceptors.response.use(response => {
             return response;
-        }, error => {
+        }, async (error) => {
             if(error.status === 401 || error.status === 403){
-                logOut()
+                await logOut()
                 .then(() => {
                     console.log('logged out user')
                     navigate('/login')

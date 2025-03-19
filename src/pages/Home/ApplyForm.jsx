@@ -47,8 +47,7 @@ const ApplyForm = () => {
     //     }
     // })
 
-    const checkResponse = await axiosInstance.get(`/api/v1/my-apply/?email=${user?.email}&jobId=${id}`);
-    console.log()
+    const checkResponse = await axiosInstance.get(`/api/v1/my-apply?email=${user?.email}&jobId=${id}`);
     if (checkResponse.data.length > 0) {
       Swal.fire({
         title: "You have already applied!",

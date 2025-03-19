@@ -5,7 +5,7 @@ import logo from "../assets/big-logo.png";
 import AuthContext from "../context/AuthContext";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext)
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

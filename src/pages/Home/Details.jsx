@@ -2,21 +2,29 @@ import { useEffect, useState } from "react";
 import { IoIosMail, IoMdMail } from "react-icons/io";
 import { LuMapPin } from "react-icons/lu";
 import { Link, useParams } from "react-router";
+import usePrivetAxios from "../../hooks/usePrivetAxios";
 
 const Details = () => {
   const [jobDetail, setJobDetail] = useState({});
   const [loading, setLoading] = useState(true)
 
+  const axiosInstance = usePrivetAxios();
+
   const { id } = useParams();
   console.log(jobDetail);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/details/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobDetail(data)
-        setLoading(false)
-      });
+    // fetch(`http://localhost:5000/api/v1/details/${id}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setJobDetail(data)
+    //     setLoading(false)
+    //   });
+    axiosInstance(`/api/v1/details/${id}`)
+    .then(res => {
+      setJobDetail(res.data)
+      setLoading(false)
+    })
   }, []);
 
 

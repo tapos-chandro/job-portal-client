@@ -8,6 +8,8 @@ import Details from "../pages/Home/Details";
 import ApplyForm from "../pages/Home/ApplyForm";
 import MyApplications from "../pages/MyApplications/MyApplications";
 import PrivetRoute from "./PrivetRoute";
+import Blog from "../pages/Blog/Blog";
+import Contact from "../pages/Contact/Contact";
 
 const Routers = createBrowserRouter([
     {
@@ -43,6 +45,16 @@ const Routers = createBrowserRouter([
         {
             path: 'my-applications',
             element:<PrivetRoute><MyApplications></MyApplications></PrivetRoute>
+        }
+        ,
+        {
+            path: 'blog',
+            element:<Blog></Blog>
+        }
+        ,
+        {
+            path: 'contact',
+            element:<Contact></Contact>
         }
       ]
     },
